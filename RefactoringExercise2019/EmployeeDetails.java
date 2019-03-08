@@ -153,7 +153,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchByIdField.addActionListener(this);
 		searchByIdField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(searchId = new JButton(new ImageIcon(
-				new ImageIcon("imgres.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
+				new ImageIcon("search.png").getImage().getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchId.addActionListener(this);
 		searchId.setToolTipText("Search Employee By ID");
@@ -163,7 +163,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		searchBySurnameField.addActionListener(this);
 		searchBySurnameField.setDocument(new JTextFieldLimit(20));
 		searchPanel.add(
-				searchSurname = new JButton(new ImageIcon(new ImageIcon("imgres.png").getImage()
+				searchSurname = new JButton(new ImageIcon(new ImageIcon("search.png").getImage()
 						.getScaledInstance(35, 20, java.awt.Image.SCALE_SMOOTH))),
 				"width 35:35:35, height 20:20:20, growx, pushx, wrap");
 		searchSurname.addActionListener(this);
@@ -654,12 +654,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	public boolean correctPps(String pps, long currentByte) {
 		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
-		if (pps.length() == 8 || pps.length() == 9) {
-			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
-					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5)) 
-					&& Character.isDigit(pps.charAt(6))	&& Character.isLetter(pps.charAt(7))
-					&& (pps.length() == 8 || Character.isLetter(pps.charAt(8)))) {
+		if (pps.length() == 7 || pps.length() < 8) {
+			if (Character.isDigit(pps.charAt(0))
+					&& Character.isDigit(pps.charAt(1))	&& Character.isDigit(pps.charAt(2)) 
+					&& Character.isDigit(pps.charAt(3))	&& Character.isDigit(pps.charAt(4)) 
+					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6))
+					&& (pps.length() == 7 && Character.isLetter(pps.charAt(6)))) {
 				// open file for reading
 				application.openReadFile(file.getAbsolutePath());
 				// look in file is PPS already in use
