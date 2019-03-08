@@ -12,7 +12,7 @@ public class Employee{
 	private char gender;
 	private String department;
 	private double salary;
-	private boolean fullTime;
+	private boolean fullTime; 
 
 	// Create Employee with no details
 	public Employee() {
