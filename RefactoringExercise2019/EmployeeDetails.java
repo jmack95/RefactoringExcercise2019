@@ -183,7 +183,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		first.addActionListener(this);
 		first.setToolTipText("Display first Record");
 
-		navigPanel.add(previous = new JButton(new ImageIcon(new ImageIcon("previous.png").getImage()
+		navigPanel.add(previous = new JButton(new ImageIcon
+				(new ImageIcon("prev.png").getImage()
 				.getScaledInstance(17, 17, java.awt.Image.SCALE_SMOOTH))));
 		previous.setPreferredSize(new Dimension(17, 17));
 		previous.addActionListener(this);
