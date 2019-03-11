@@ -286,8 +286,8 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 						super.paint(g);
 					}// end paint
 				});
-			} // end else if
-		} // end for
+			} 
+		} 
 		return empDetails;
 	}// end detailsPanel
 
@@ -309,7 +309,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					found = true;
 				else
 					countGender++;
-			} // end while
+			} 
 			found = false;
 			// find corresponding department combo box value to current employee
 			while (!found && countDep < department.length - 1) {
@@ -317,7 +317,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					found = true;
 				else
 					countDep++;
-			} // end while
+			} 
 			idField.setText(Integer.toString(thisEmployee.getEmployeeId()));
 			ppsField.setText(thisEmployee.getPps().trim());
 			surnameField.setText(thisEmployee.getSurname().trim());
@@ -535,7 +535,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		// write into a file
 		currentByteStart = application.addRecords(newEmployee);
 		application.closeWriteFile();
-	}
+	}   
 
 	private void deleteRecord() {
 		if (isSomeoneToDisplay()) {
@@ -659,7 +659,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private boolean checkForChanges() {
 		boolean anyChanges = false;
 		if (change) {
-			saveChanges();// save changes
+			saveChanges();
 			anyChanges = true;
 		}
 		else {
