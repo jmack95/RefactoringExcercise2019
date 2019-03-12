@@ -170,7 +170,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == save) {
 			// if inputs correct, save record
-			if (checkInput()) {
+			if (checkInput()==true) {
 				addRecord();// add record to file
 				dispose();// dispose dialog
 				this.parent.changesMade = true;

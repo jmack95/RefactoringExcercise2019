@@ -50,6 +50,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import net.miginfocom.swing.MigLayout;
 
 public class EmployeeDetails extends JFrame implements ActionListener, ItemListener, DocumentListener, WindowListener {
+	
 	private static final DecimalFormat format = new DecimalFormat("\u20ac ###,###,##0.00");
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	private long currentByteStart = 0;
@@ -623,12 +624,12 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	public boolean correctPps(String pps, long currentByte) {
 		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
-		if (pps.length() == 7 || pps.length() < 8) {
+		if (pps.length() == 7) {
 			if (Character.isDigit(pps.charAt(0))
 					&& Character.isDigit(pps.charAt(1))	&& Character.isDigit(pps.charAt(2)) 
 					&& Character.isDigit(pps.charAt(3))	&& Character.isDigit(pps.charAt(4)) 
-					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6))
-					&& (pps.length() == 7 && Character.isLetter(pps.charAt(6)))) {
+					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6)))
+					 {
 				
 				application.openReadFile(file.getAbsolutePath());
 				ppsExist = application.isPpsExist(pps, currentByte);
