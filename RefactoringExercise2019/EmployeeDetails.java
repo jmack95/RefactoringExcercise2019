@@ -204,16 +204,16 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private JPanel buttonPanel() {
 		JPanel buttonPanel = new JPanel();
 
-		buttonPanel.add(add = new JButton("Add Record"), "growx, pushx");
+		buttonPanel.add(add = new JButton("Add Record"), migLayout2());
 		add.addActionListener(this);
 		add.setToolTipText("Add new Employee Record");
-		buttonPanel.add(edit = new JButton("Edit Record"), "growx, pushx");
+		buttonPanel.add(edit = new JButton("Edit Record"),migLayout2());
 		edit.addActionListener(this);
 		edit.setToolTipText("Edit current Employee");
-		buttonPanel.add(deleteButton = new JButton("Delete Record"), "growx, pushx, wrap");
+		buttonPanel.add(deleteButton = new JButton("Delete Record"), migLayout3());
 		deleteButton.addActionListener(this);
 		deleteButton.setToolTipText("Delete current Employee");
-		buttonPanel.add(displayAll = new JButton("List all Records"), "growx, pushx");
+		buttonPanel.add(displayAll = new JButton("List all Records"),migLayout2());
 		displayAll.addActionListener(this);
 		displayAll.setToolTipText("List all Registered Employees");
 
@@ -228,30 +228,30 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 
-		empDetails.add(new JLabel("ID:"), "growx, pushx");
-		empDetails.add(idField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("ID:"), migLayout2());
+		empDetails.add(idField = new JTextField(20),migLayout3());
 		idField.setEditable(false);
 
-		empDetails.add(new JLabel("PPS Number:"), "growx, pushx");
-		empDetails.add(ppsField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("PPS Number:"),migLayout2());
+		empDetails.add(ppsField = new JTextField(20),migLayout3());
 
-		empDetails.add(new JLabel("Surname:"), "growx, pushx");
-		empDetails.add(surnameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Surname:"),migLayout2());
+		empDetails.add(surnameField = new JTextField(20),migLayout3());
 
-		empDetails.add(new JLabel("First Name:"), "growx, pushx");
-		empDetails.add(firstNameField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("First Name:"),migLayout2());
+		empDetails.add(firstNameField = new JTextField(20),migLayout3());
 
-		empDetails.add(new JLabel("Gender:"), "growx, pushx");
-		empDetails.add(genderCombo = new JComboBox<String>(gender), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Gender:"),migLayout2());
+		empDetails.add(genderCombo = new JComboBox<String>(gender),migLayout3());
 
-		empDetails.add(new JLabel("Department:"), "growx, pushx");
-		empDetails.add(departmentCombo = new JComboBox<String>(department), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Department:"),migLayout2());
+		empDetails.add(departmentCombo = new JComboBox<String>(department),migLayout3());
 
-		empDetails.add(new JLabel("Salary:"), "growx, pushx");
-		empDetails.add(salaryField = new JTextField(20), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Salary:"),migLayout2());
+		empDetails.add(salaryField = new JTextField(20),migLayout3());
 
-		empDetails.add(new JLabel("Full Time:"), "growx, pushx");
-		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), "growx, pushx, wrap");
+		empDetails.add(new JLabel("Full Time:"), migLayout2());
+		empDetails.add(fullTimeCombo = new JComboBox<String>(fullTime), migLayout3());
 
 		buttonPanel.add(saveChange = new JButton("Save"));
 		saveChange.addActionListener(this);
@@ -262,7 +262,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		cancelChange.setVisible(false);
 		cancelChange.setToolTipText("Cancel edit");
 
-		empDetails.add(buttonPanel, "span 2,growx, pushx,wrap");
+		empDetails.add(buttonPanel, "span 2"+ migLayout3());
 
 		// loop through panel components and add listeners and format
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
@@ -291,6 +291,13 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		} 
 		return empDetails;
 	}// end detailsPanel
+	
+	public String migLayout2() {
+		return "growx, pushx";
+	}
+	public String migLayout3() {
+		return "growx, pushx, wrap";
+	}
 
 	// display current Employee details
 	public void displayRecords(Employee thisEmployee) {
@@ -371,36 +378,24 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		if (isSomeoneToDisplay()) {
 		
 			application.openReadFile(file.getAbsolutePath());
-			
 			currentByteStart = application.getPrevious(currentByteStart);
-			
 			currentEmployee = application.readRecords(currentByteStart);
-			
 			while (currentEmployee.getEmployeeId() == 0) {
-				
 				currentByteStart = application.getPrevious(currentByteStart);
-				
 				currentEmployee = application.readRecords(currentByteStart);
 			} 
 			application.closeReadFile();
 		}
 	}
-
-
 	private void nextRecord() {
 		
 		if (isSomeoneToDisplay()) {
 		
 			application.openReadFile(file.getAbsolutePath());
-		
 			currentByteStart = application.getNext(currentByteStart);
-		
 			currentEmployee = application.readRecords(currentByteStart);
-			
-			while (currentEmployee.getEmployeeId() == 0) {
-			
+		while (currentEmployee.getEmployeeId() == 0) {
 				currentByteStart = application.getNext(currentByteStart);
-				
 				currentEmployee = application.readRecords(currentByteStart);
 			}
 			application.closeReadFile();
@@ -630,7 +625,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					&& Character.isDigit(pps.charAt(3))	&& Character.isDigit(pps.charAt(4)) 
 					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6)))
 					 {
-				
 				application.openReadFile(file.getAbsolutePath());
 				ppsExist = application.isPpsExist(pps, currentByte);
 				application.closeReadFile();
