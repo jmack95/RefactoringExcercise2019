@@ -86,7 +86,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		buttonPanel.add(cancel = new JButton("Cancel"));
 		cancel.addActionListener(this);
 
-		empDetails.add(buttonPanel, "span 2"+ migLayout3());
+		empDetails.add(buttonPanel, migLayout4());
 		// loop through all panel components and add fonts and listeners
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
 			empDetails.getComponent(i).setFont(this.parent.font1);
@@ -96,7 +96,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 			else if(empDetails.getComponent(i) instanceof JTextField){
 				field = (JTextField) empDetails.getComponent(i);
 				if(field == ppsField)
-					field.setDocument(new JTextFieldLimit(9));
+					field.setDocument(new JTextFieldLimit(7));
 				else
 				field.setDocument(new JTextFieldLimit(20));
 			}// end else if
@@ -148,7 +148,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 			valid = false;
 		}
 		try {// try to get values from text field
-			Double.parseDouble(salaryField.getText());
+			//TODO
 			if (Double.parseDouble(salaryField.getText()) < 0) {
 				salaryField.setBackground(new Color(255, 150, 150));
 				valid = false;
@@ -170,6 +170,9 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	}
 	public String migLayout3() {
 		return "growx, pushx, wrap";
+	}
+	public String migLayout4() {
+		return "span 2, growx , pushx ,wrap";
 	}
 
 

@@ -262,7 +262,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		cancelChange.setVisible(false);
 		cancelChange.setToolTipText("Cancel edit");
 
-		empDetails.add(buttonPanel, "span 2"+ migLayout3());
+		empDetails.add(buttonPanel, "span 2,growx,pushx,wrap");
 
 		// loop through panel components and add listeners and format
 		for (int i = 0; i < empDetails.getComponentCount(); i++) {
@@ -545,6 +545,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					nextRecord();
 					displayRecords(currentEmployee);
 				} 
+				else {
+					change = false;
+				}
 			} 
 		} 
 	}
@@ -620,15 +623,11 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		boolean ppsExist = false;
 		// check for correct PPS format based on assignment description
 		if (pps.length() == 7) {
-			if (Character.isDigit(pps.charAt(0))
-					&& Character.isDigit(pps.charAt(1))	&& Character.isDigit(pps.charAt(2)) 
-					&& Character.isDigit(pps.charAt(3))	&& Character.isDigit(pps.charAt(4)) 
-					&& Character.isDigit(pps.charAt(5))	&& Character.isLetter(pps.charAt(6)))
-					 {
-				application.openReadFile(file.getAbsolutePath());
-				ppsExist = application.isPpsExist(pps, currentByte);
-				application.closeReadFile();
-			} 
+			if (pps.matches("[0-9][0-9][0-9][0-9][0-9][0-9][A-Z]")) {
+				application.openReadFile(file.getAbsolutePath());	// open file for reading
+				ppsExist = application.isPpsExist(pps, currentByte);//  is PPS already in use?
+				application.closeReadFile();// close file for reading
+			}
 			else
 				ppsExist = true;
 		} 
