@@ -165,20 +165,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		}
 		return valid;
 	}
-	/*//TODO make mig layout  class
-	
-	public String migLayout2() {
-		return "growx, pushx";
-	}
-	public String migLayout3() {
-		return "growx, pushx, wrap";
-	}
-	public String migLayout4() {
-		return "span 2, growx , pushx ,wrap";
-	}
-*/
 
-	
 	// action performed
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == save) {
