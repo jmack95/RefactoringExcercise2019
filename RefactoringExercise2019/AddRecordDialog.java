@@ -123,31 +123,14 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	// check for input in text fields
 	public boolean checkInput() {
 		boolean valid = true;
-		// if any of inputs are in wrong format, colour text field and display message
-		if (ppsField.getText().equals("")) {
-			ppsField.setBackground(ColourOption.red);
-			valid = false;
+		boolean validation = true;
+
+		if (Validator.validate(ppsField, surnameField, firstNameField, genderCombo, departmentCombo)) {
+			validation = true;
 		}
-		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-			ppsField.setBackground(ColourOption.red);
-			valid = false;
-		}
-		if (surnameField.getText().isEmpty()) {
-			surnameField.setBackground(ColourOption.red);
-			valid = false;
-		}
-		if (firstNameField.getText().isEmpty()) {
-			firstNameField.setBackground(ColourOption.red);
-			valid = false;
-		}
-		if (genderCombo.getSelectedIndex() == 0) {
-			genderCombo.setBackground(ColourOption.red);
-			valid = false;
-		}
-		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(ColourOption.red);
-			valid = false;
-		}
+		
+		if (validation == true) {
+			
 		try {// try to get values from text field
 		
 			if (Double.parseDouble(salaryField.getText()) < 0) {
@@ -162,6 +145,7 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		if (fullTimeCombo.getSelectedIndex() == 0) {
 			fullTimeCombo.setBackground(ColourOption.red);
 			valid = false;
+		}
 		}
 		return valid;
 	}

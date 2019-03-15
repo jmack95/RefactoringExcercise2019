@@ -661,56 +661,43 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	// check for input in text fields
 	private boolean checkInput() {
+		boolean validation = true;
 		boolean valid = true;
-	
-		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
-			ppsField.setBackground(ColourOption.red);
-			valid = false;
+		
+		if (Validator.validate(ppsField, surnameField, firstNameField, genderCombo, departmentCombo)) {
+			validation = true;
 		}
-		if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentPosition)) {
-			ppsField.setBackground(ColourOption.red);
-			valid = false;
-		} 
-		if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
-			surnameField.setBackground(ColourOption.red);
-			valid = false;
-		} 
-		if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
-			firstNameField.setBackground(ColourOption.red);
-			valid = false;
-		} 
-		if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
-			genderCombo.setBackground(ColourOption.red);
-			valid = false;
-		} 
-		if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
-			departmentCombo.setBackground(ColourOption.red);
-			valid = false;
-		}
-		try {
-			Double.parseDouble(salaryField.getText());
+		
+		if (validation == true) {
 			
-			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(ColourOption.red);;
+		
+			if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentPosition)) {
+				ppsField.setBackground(Color.red);
 				valid = false;
 			} 
-		} 
-		catch (NumberFormatException num) {
-			if (salaryField.isEditable()) {
-				salaryField.setBackground(ColourOption.red);
-				valid = false;
-			}
-		} 
-		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
-			fullTimeCombo.setBackground(ColourOption.red);
-			valid = false;
-		} 
-			// display message if any input or format is wrong
-		if (!valid)
-			JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
 		
-
-	
+			try {
+				Double.parseDouble(salaryField.getText());
+				if (Double.parseDouble(salaryField.getText()) < 0) {
+					salaryField.setBackground(Color.red);
+					valid = false;
+				} 
+			} 
+			catch (NumberFormatException num) {
+				if (salaryField.isEditable()) {
+					salaryField.setBackground(Color.red);
+					valid = false;
+				} 
+			} 
+			if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
+				fullTimeCombo.setBackground(Color.red);
+				valid = false;
+			} 
+				
+			if (!valid)
+				JOptionPane.showMessageDialog(null, "Wrong values or format! Please check!");
+			
+		}
 		return valid;
 	}
 
@@ -998,7 +985,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		setJMenuBar(menuBar());// add menu bar to frame
 		dialog.add(searchPanel(), "width 400:400:400, growx, pushx");
 		dialog.add(navigPanel(), "width 150:150:150, wrap");
-		dialog.add(buttonPanel(), "growx, pushx, span 2,wrap");
+		dialog.add(buttonPanel(), MigLayoutManager.migLayout4);
 		dialog.add(detailsPanel(), "gap top 30, gap left 150, center");
 
 		JScrollPane scrollPane = new JScrollPane(dialog);

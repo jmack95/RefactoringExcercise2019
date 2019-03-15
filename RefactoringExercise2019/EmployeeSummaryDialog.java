@@ -1,6 +1,7 @@
 /*
  * 
- * This is the summary dialog for displaying all Employee details
+
+ * +This is the summary dialog for displaying all Employee details
  * 
  * */
 
@@ -105,8 +106,8 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		back.addActionListener(this);
 		back.setToolTipText("Return to main screen");
 		
-		summaryDialog.add(buttonPanel,"growx, pushx, wrap");
-		summaryDialog.add(scrollPane,"growx, pushx, wrap");
+		summaryDialog.add(buttonPanel,MigLayoutManager.migLayout3);
+		summaryDialog.add(scrollPane,MigLayoutManager.migLayout3);
 		scrollPane.setBorder(BorderFactory.createTitledBorder("Employee Details"));
 		
 		return summaryDialog;
